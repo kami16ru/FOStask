@@ -24,6 +24,8 @@ abstract class Algorithm
             } else $retArr[$value] = 1;
         }
 
+        $retArr = array_splice($retArr,0,5);
+
         return $retArr;
     }
 }

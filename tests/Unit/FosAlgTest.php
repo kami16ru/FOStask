@@ -34,4 +34,26 @@ class FosAlgTest extends FosAlgTestCase
             $this->assertEquals($expected, $actual);
         }
     }
+
+    /** @test */
+    public function caseMinDif() {
+        foreach ($this->expectedCall as $locale => $data) {
+            $expected = $this->expectedAnswer[$locale]['caseMinDif'];
+
+            $actual = Algorithm::baseRealisation($this->expectedCall[$locale]['caseMinDif']);
+
+            $this->assertEquals($expected, $actual);
+        }
+    }
+
+    /** @test */
+    public function caseMiddleDif() {
+        foreach ($this->expectedCall as $locale => $data) {
+            $expected = $this->expectedAnswer[$locale]['caseMiddleDif'];
+
+            $actual = Algorithm::baseRealisation($this->expectedCall[$locale]['caseMiddleDif']);
+
+            $this->assertEquals($expected, $actual);
+        }
+    }
 }

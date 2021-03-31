@@ -8,6 +8,8 @@ class FosAlgTestCase extends TestCase
 {
     protected array $expectedCall = [];
 
+    protected array $explodedCall = [];
+
     protected array $expectedAnswer = [];
 
     protected function setUp(): void
@@ -15,6 +17,21 @@ class FosAlgTestCase extends TestCase
         parent::setUp();
 
         $this->expectedCall = [
+            'ru' => [
+                'caseLessArgs' => 'программирование гонки',
+                'caseMinDif' => 'код гонки музыка игры природа экология код гонки',
+                'caseMiddleDif' => 'код гонки музыка игры природа экология велосипед фотография код гонки музыка игры' .
+                    'природа экология код гонки музыка игры природа код гонки музыка игры код гонки'
+            ],
+            'en' => [
+                'caseLessArgs' => 'code cars',
+                'caseMinDif' => 'code cars music games nature ecology code cars',
+                'caseMiddleDif' => 'code cars music games nature ecology bicycle photography code cars music games' .
+                    'nature ecology code cars music games nature code cars music games code cars'
+            ]
+        ];
+
+        $this->explodedCall = [
             'ru' => [
                 'caseLessArgs' => [
                     'программирование',
@@ -102,6 +119,7 @@ class FosAlgTestCase extends TestCase
                 ]
             ]
         ];
+
         $this->expectedAnswer = [
             'ru' => [
                 'caseLessArgs' => [

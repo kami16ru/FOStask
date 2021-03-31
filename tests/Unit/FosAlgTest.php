@@ -13,36 +13,25 @@ class FosAlgTest extends FosAlgTestCase
     }
 
     /** @test */
-    public function callWithEmptyArrayAndExpectEmptyArray()
+    public function callWithEmptyStringAndExpectEmptyArray()
     {
+        $data = '';
+
         $expected = [];
 
-        $actual = Algorithm::baseRealisation([]);
+        $actual = Algorithm::baseRealisation($data);
 
         $this->assertEquals($expected, $actual);
     }
 
     /** @test */
-    public function callWithOneElement()
-    {
-        $expected = [];
+    public function caseLessArgs() {
+        foreach ($this->expectedCall as $locale => $data) {
+            $expected = $this->expectedAnswer[$locale]['caseLessArgs'];
 
-        $actual = Algorithm::baseRealisation([]);
+            $actual = Algorithm::baseRealisation($this->expectedCall[$locale]['caseLessArgs']);
 
-        $this->assertEquals($expected, $actual);
-    }
-
-    /** @test */
-    public function callWithManyElements() {
-        $data = $this->expectedCall;
-
-        $expected = $this->expectedAnswer;
-
-        foreach ($expected as $locale => $expectedData) {
-            foreach ($expectedData as $assertion => $value) {
-                $this->assertEquals($expected[$locale][$assertion], Algorithm::baseRealisation($data[$locale][$assertion]));
-            }
+            $this->assertEquals($expected, $actual);
         }
-
     }
 }

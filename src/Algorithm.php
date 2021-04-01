@@ -12,7 +12,12 @@ abstract class Algorithm
      */
     static function baseRealisation(string $string): array
     {
-        $explodedStr = self::strToArray($string);
+        $explodedStr = preg_split(
+            "/[\s,]*\\\"([^\\\"]+)\\\"[\s,]*|" . "[\s,]*'([^']+)'[\s,]*|" . "[\s,]+/",
+            $string,
+            0,
+            PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE
+        );
 
         $retArr = self::calcElements($explodedStr);
 
@@ -23,7 +28,8 @@ abstract class Algorithm
         return $retArr;
     }
 
-    private static function calcElements($array) {
+    private static function calcElements($array): array
+    {
         $retArr = [];
 
         foreach ($array as $key => $value) {
@@ -33,15 +39,6 @@ abstract class Algorithm
         }
 
         return $retArr;
-    }
-
-    private static function strToArray(string $string): array {
-        return preg_split(
-            "/[\s,]*\\\"([^\\\"]+)\\\"[\s,]*|" . "[\s,]*'([^']+)'[\s,]*|" . "[\s,]+/",
-            $string,
-            0,
-            PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE
-        );
     }
 
     private static function sortArray(array &$array): void {
